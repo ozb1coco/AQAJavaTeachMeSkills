@@ -1,4 +1,4 @@
-package TeachMeSkills.com.Lesson1;
+package TeachMeSkills.com.com.Lesson1;
 
 import java.util.Scanner;
 

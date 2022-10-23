@@ -1,4 +1,4 @@
-package TeachMeSkills.com.Lesson3.HomeWork;
+package TeachMeSkills.com.com.Lesson3.HomeWork;
 
 import java.util.Random;
 import java.util.Scanner;
