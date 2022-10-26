@@ -1,5 +1,6 @@
 package TeachMeSkills.com.com.Lesson5.HomeWork;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Starter {
@@ -8,14 +9,14 @@ public class Starter {
         Computer computer = new Computer("Intel", 1028, 512, 500);
         computer.PrintFullInformation("Intel", 1028, 512, 500);
         Scanner scanner = new Scanner(System.in);
-        int button;
+        String button;
         do {
             computer.TurnOnPC();
             computer.TurnOffPC();
             countOfResourse++;
             computer.Limits(countOfResourse);
             System.out.println("If u want to exit press 10 if not press any button: ");
-            button = scanner.nextInt();
-        } while (button != 10);
+            button = scanner.nextLine();
+        } while (!Objects.equals(button, "10"));
     }
 }

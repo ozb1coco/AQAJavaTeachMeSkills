@@ -24,34 +24,55 @@ public class Computer {
 
     public void TurnOnPC() {
         Random random = new Random();
-        System.out.println("Enter value: ");
-        int turnOnValue = scanner.nextInt();
+
         int turnOnRandomValue = random.nextInt(2);
         System.out.println(turnOnRandomValue);
         String turnOnInformation;
-        if (turnOnValue == turnOnRandomValue) {
-            turnOnInformation = "Ur PC is TURN ON";
-            System.out.println(turnOnInformation);
-        } else {
-            turnOnInformation = "Error ur PC is didn't turn on";
-            System.out.println(turnOnInformation);
+        int brokeStatus = 0;
+        for(;;) {
+            System.out.println("Turn on ur PC: ");
+            int turnOnValue = scanner.nextInt();
+            if (brokeStatus == 0) {
+                if (turnOnValue == turnOnRandomValue) {
+                    turnOnInformation = "Ur PC is TURN ON";
+                    System.out.println(turnOnInformation);
+                    break;
+                } else {
+                    turnOnInformation = "Error ur PC is didn't turn on";
+                    System.out.println(turnOnInformation);
+                    brokeStatus = 1;
+                }
+            } else {
+                System.out.println("Ur PC is BURN");
+                break;
+            }
         }
     }
 
     public void TurnOffPC() {
         Random random = new Random();
-        System.out.println("Enter value: ");
-        int turnOffValue = scanner.nextInt();
         int turnOffRandomValue = random.nextInt(2);
         System.out.println(turnOffRandomValue);
         String turnOffInformation;
-
-        if (turnOffValue == turnOffRandomValue) {
-            turnOffInformation = "Ur PC is TURN OFF";
-            System.out.println(turnOffInformation);
-        } else {
-            turnOffInformation = "Error ur PC is didn't turn Off";
-            System.out.println(turnOffInformation);
+        int brokeStatus = 0;
+        for(;;) {
+            System.out.println("Turn off ur PC: ");
+            int turnOffValue = scanner.nextInt();
+            if(brokeStatus == 0) {
+                if (turnOffValue == turnOffRandomValue) {
+                    turnOffInformation = "Ur PC is TURN OFF";
+                    System.out.println(turnOffInformation);
+                    break;
+                } else {
+                    turnOffInformation = "Error ur PC is didn't turn Off";
+                    System.out.println(turnOffInformation);
+                    brokeStatus = 1;
+                }
+            }
+            else{
+                System.out.println("Ur PC is BURN");
+                break;
+            }
         }
     }
 
