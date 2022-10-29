@@ -1,4 +1,4 @@
-package TeachMeSkills.com.com.Lesson6.HomeWork;
+package TeachMeSkills.com.com.Lesson6.HomeWorkp;
 
 public class EarthTransport extends Transport {
     private int numberOfWheels;
