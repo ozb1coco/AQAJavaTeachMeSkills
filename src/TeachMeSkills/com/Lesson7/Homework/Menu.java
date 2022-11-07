@@ -1,14 +1,12 @@
 package TeachMeSkills.com.Lesson7.Homework;
 
-import jdk.jfr.StackTrace;
-
 import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
 
     public void print() {
-            menu();
+        menu();
     }
 
     private void mathOperation(int calculateOperation) {
@@ -35,8 +33,12 @@ public class Menu {
                 break;
             case 4:
                 Calculatble division = new Division();
+                if (number2 == 0) {
+                    System.out.println("U cant dived by zero, try again");
+                } else {
                     division.action(number1, number2);
-                    break;
+                }
+                break;
         }
     }
 
@@ -46,17 +48,16 @@ public class Menu {
         if (choose == 1) {
             for (; ; ) {
                 System.out.println("Enter operation to calculate: \n 1) Summ \n 2) Substraction \n 3) Multiply \n 4) Division  \n 5) Exit");
-                    int calculateOperation = scanner.nextInt();
-                    if (calculateOperation > 0 && calculateOperation < 6) {
-                        if (calculateOperation == 5) {
-                            System.out.println("U exit from program good bye");
-                            break;
-                        } else {
-                            System.out.println("Enter two numbers: ");
-                            mathOperation(calculateOperation);
-                        }
+                int calculateOperation = scanner.nextInt();
+                if (calculateOperation > 0 && calculateOperation < 6) {
+                    if (calculateOperation == 5) {
+                        System.out.println("U exit from program good bye");
+                        break;
+                    } else {
+                        System.out.println("Enter two numbers: ");
+                        mathOperation(calculateOperation);
                     }
-
+                }
             }
         } else if (choose == 2) {
             System.out.println("U exit from calculator good bye");
