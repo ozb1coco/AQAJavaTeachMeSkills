@@ -6,10 +6,16 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
 
     public void print() {
-        menu();
+        try {
+            menu();
+        }
+        catch (MenuWrongChoiceException | MathOperationChoiceException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
-    private void mathOperation(int calculateOperation) {
+    private void mathOperation(int calculateOperation) throws ArithmeticException {
         double number1 = 0;
         double number2 = 0;
         if (scanner.hasNextDouble()) {
@@ -34,7 +40,7 @@ public class Menu {
             case 4:
                 Calculatble division = new Division();
                 if (number2 == 0) {
-                    System.out.println("U cant dived by zero, try again");
+                    throw new ArithmeticException();
                 } else {
                     division.action(number1, number2);
                 }
@@ -42,27 +48,36 @@ public class Menu {
         }
     }
 
-    private void menu() {
+    private void menu() throws MenuWrongChoiceException, MathOperationChoiceException{
         System.out.println("Welcome to calculate program if choose ur action: \n 1) Calculate number \n 2) Exit the program");
         int choose = scanner.nextInt();
+        if(choose < 1 || choose > 2)
+        {
+            throw new MenuWrongChoiceException();
+        }
         if (choose == 1) {
             for (; ; ) {
                 System.out.println("Enter operation to calculate: \n 1) Summ \n 2) Substraction \n 3) Multiply \n 4) Division  \n 5) Exit");
                 int calculateOperation = scanner.nextInt();
-                if (calculateOperation > 0 && calculateOperation < 6) {
-                    if (calculateOperation == 5) {
-                        System.out.println("U exit from program good bye");
-                        break;
-                    } else {
-                        System.out.println("Enter two numbers: ");
+                if(calculateOperation < 1 || calculateOperation >= 6)
+                {
+                    throw new MathOperationChoiceException();
+                }
+                if (calculateOperation == 5) {
+                    System.out.println("U exit from program good bye");
+                    break;
+                } else {
+                    System.out.println("Enter two numbers: ");
+                    try {
                         mathOperation(calculateOperation);
+                    }catch (ArithmeticException e)
+                    {
+                        System.out.println("Divide by ZERO Exception");
                     }
                 }
             }
-        } else if (choose == 2) {
-            System.out.println("U exit from calculator good bye");
         } else {
-            System.out.println("U entered wrong value");
+            System.out.println("U exit from calculator good bye");
         }
     }
 }
