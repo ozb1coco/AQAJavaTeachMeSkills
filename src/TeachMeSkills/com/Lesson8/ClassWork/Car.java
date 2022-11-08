@@ -6,10 +6,8 @@ public class Car {
     String brand;
     int speed;
     double price;
-
     public Car() {
     }
-
     public Car(String brand, int speed, double price) {
         this.brand = brand;
         this.speed = speed;
