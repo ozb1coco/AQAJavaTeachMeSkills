@@ -20,12 +20,10 @@ public class Car {
         + "\n With price: " + price + " is ");
         execution();
     }
-    private void execution()
-    {
+    private void execution() {
         try{
             System.out.println(start());
-        }catch (CarDidntStartException e)
-        {
+        }catch (CarDidntStartException e) {
             System.out.print(e.getMessage());
         }
     }
@@ -33,8 +31,7 @@ public class Car {
         String carStatus;
         Random random = new Random();
         int autoStarter = random.nextInt(20) + 1;
-        if(autoStarter % 2 == 0)
-        {
+        if(autoStarter % 2 == 0) {
             throw new CarDidntStartException();
         }
         else{
