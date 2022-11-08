@@ -1,19 +1,9 @@
 package TeachMeSkills.com.Lesson7.Homework;
 
-public class Division implements Calculatble{
-    private double number1, number2;
-    public Division(double number1, double number2) {
-        this.number1 = number1;
-        this.number2 = number2;
-    }
-    public double getNumber1() {
-        return number1;
-    }
-    public double getNumber2() {
-        return number2;
-    }
+public class Division implements Calculatble {
+
     @Override
-    public void action() {
-        System.out.println(getNumber1() / getNumber2());
+    public void action(double number1, double number2) {
+        System.out.println(number1 / number2);
     }
 }
