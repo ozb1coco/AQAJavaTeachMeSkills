@@ -31,8 +31,7 @@ public class Car {
         int autoStarter = random.nextInt(20) + 1;
         if(autoStarter % 2 == 0) {
             throw new CarDidntStartException();
-        }
-        else{
+        } else{
             carStatus = " going! ";
         }
         return carStatus;
