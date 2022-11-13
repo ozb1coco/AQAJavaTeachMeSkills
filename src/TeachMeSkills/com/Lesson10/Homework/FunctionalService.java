@@ -20,7 +20,7 @@ public class FunctionalService {
         String searchName = scanner.nextLine();
         int count = 0;
         for (Student student : students) {
-            if (student.name.equals(searchName)) {
+            if (student.getName().equals(searchName)) {
                 count++;
             }
         }

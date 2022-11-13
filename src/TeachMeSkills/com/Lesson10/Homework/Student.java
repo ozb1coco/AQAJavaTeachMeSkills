@@ -3,9 +3,9 @@ package TeachMeSkills.com.Lesson10.Homework;
 import java.util.ArrayList;
 import java.util.List;
 public class Student {
-    int age;
-    String name;
-    List<Integer> marks;
+    private int age;
+    private String name;
+    private List<Integer> marks;
     public Student(int age, String name, List<Integer> marks) {
         this.age = age;
         this.name = name;

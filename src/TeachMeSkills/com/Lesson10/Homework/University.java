@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class University {
-    String nameUniversity;
-    List<Student> students;
+    private String nameUniversity;
+    private List<Student> students;
     double rating;
 
     public University(String nameUniversity, List<Student> students, double rating) {
