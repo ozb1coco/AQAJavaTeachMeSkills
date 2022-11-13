@@ -6,7 +6,7 @@ import java.util.List;
 public class University {
     private String nameUniversity;
     private List<Student> students;
-    double rating;
+    private double rating;
 
     public University(String nameUniversity, List<Student> students, double rating) {
         this.nameUniversity = nameUniversity;
