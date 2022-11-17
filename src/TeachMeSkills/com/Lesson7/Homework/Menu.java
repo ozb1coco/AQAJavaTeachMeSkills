@@ -4,25 +4,25 @@ import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
-    private MathOperationResultHistoryImpl history = new MathOperationResultHistoryImpl();
+    MathOperationResultHistoryCollections mathOperationResultHistoryCollections = new MathOperationResultHistoryCollections();
+
 
     public void print() {
         try {
             menu();
-        } catch (MenuWrongChoiceException | MathOperationChoiceException e) {
+        } catch (MenuWrongChoiceException | MathOperationChoiceException | DivideByZeroExceptionCalc e) {
             System.out.println(e.getMessage());
         }
     }
-    private void calculateTesult(){
 
-    }
-    private void mathOperation(int calculateOperation) throws ArithmeticException {
+    private void mathOperation(String calculateOperation) throws ArithmeticException, DivideByZeroExceptionCalc {
         double number1 = 0;
         double number2 = 0;
         double result = 0d;
-        switch (calculateOperation) {
-            case 1:
 
+        System.out.println("Enter 2 nums: ");
+        switch (calculateOperation) {
+            case "+" -> {
                 if (scanner.hasNextDouble()) {
                     number1 = scanner.nextDouble();
                 }
@@ -31,8 +31,12 @@ public class Menu {
                 }
                 Calculatble summ = new Summ();
                 result = summ.action(number1, number2);
-                break;
-            case 2:
+                mathOperationResultHistoryCollections.addToHistory(calculateOperation, number1);
+                mathOperationResultHistoryCollections.addToHistory(calculateOperation, number2);
+                mathOperationResultHistoryCollections.addToHistory(calculateOperation, result);
+                System.out.println(result);
+            }
+            case "-" -> {
                 if (scanner.hasNextDouble()) {
                     number1 = scanner.nextDouble();
                 }
@@ -41,8 +45,12 @@ public class Menu {
                 }
                 Calculatble subtraction = new Subtraction();
                 result = subtraction.action(number1, number2);
-                break;
-            case 3:
+                mathOperationResultHistoryCollections.addToHistory(calculateOperation, number1);
+                mathOperationResultHistoryCollections.addToHistory(calculateOperation, number2);
+                mathOperationResultHistoryCollections.addToHistory(calculateOperation, result);
+                System.out.println(result);
+            }
+            case "*" -> {
                 if (scanner.hasNextDouble()) {
                     number1 = scanner.nextDouble();
                 }
@@ -51,8 +59,12 @@ public class Menu {
                 }
                 Calculatble multiply = new Multiply();
                 result = multiply.action(number1, number2);
-                break;
-            case 4:
+                mathOperationResultHistoryCollections.addToHistory(calculateOperation, number1);
+                mathOperationResultHistoryCollections.addToHistory(calculateOperation, number2);
+                mathOperationResultHistoryCollections.addToHistory(calculateOperation, result);
+                System.out.println(result);
+            }
+            case "/" -> {
                 if (scanner.hasNextDouble()) {
                     number1 = scanner.nextDouble();
                 }
@@ -61,18 +73,21 @@ public class Menu {
                 }
                 Calculatble division = new Division();
                 if (number2 == 0) {
-                    throw new ArithmeticException();
+                    throw new DivideByZeroExceptionCalc();
                 } else {
                     result = division.action(number1, number2);
+                    mathOperationResultHistoryCollections.addToHistory(calculateOperation, number1);
+                    mathOperationResultHistoryCollections.addToHistory(calculateOperation, number2);
+                    mathOperationResultHistoryCollections.addToHistory(calculateOperation, result);
+                    System.out.println(result);
                 }
-                break;
-            case 5:
-                history.printMathOperationHistory();
+            }
+            case "History" -> mathOperationResultHistoryCollections.printMathOperationHistory();
         }
-        history.addToHistory(result);
     }
 
-    private void menu() throws MenuWrongChoiceException, MathOperationChoiceException {
+    private void menu() throws MenuWrongChoiceException, MathOperationChoiceException, DivideByZeroExceptionCalc {
+        mathOperationResultHistoryCollections.createHistoryCollection();
         System.out.println("Welcome to calculate program if choose ur action: \n 1) Calculate number \n 2) Exit the program");
         int choose = scanner.nextInt();
         if (choose < 1 || choose > 3) {
@@ -80,25 +95,31 @@ public class Menu {
         }
         if (choose == 1) {
             for (; ; ) {
-                System.out.println("Enter operation to calculate: \n 1) Summ \n 2) Substraction \n 3) Multiply \n 4) Division  \n 5) Show math History\n 6) Exit");
-                int calculateOperation = scanner.nextInt();
-                if (calculateOperation < 1 || calculateOperation >= 7) {
-                    throw new MathOperationChoiceException();
-                }
-                if (calculateOperation == 6) {
+                System.out.println("""
+                        Enter operation to calculate:\s
+                         1) Summ (+)\s
+                         2) Substraction (-)\s
+                         3) Multiply (*)\s
+                         4) Division (/) \s
+                         5) Show math History(History)
+                         6) Exit (Exit)""");
+                System.out.println();
+                System.out.println("==========================================");
+                String calculateOperation = scanner.next();
+                if (calculateOperation.equals("+") || calculateOperation.equals("-") || calculateOperation.equals("*") ||
+                        calculateOperation.equals("/") || calculateOperation.equals("History")) {
+                    mathOperation(calculateOperation);
+                } else if (calculateOperation.equals("Exit")) {
                     System.out.println("U exit from program good bye");
                     break;
                 } else {
-                    System.out.println("Enter two numbers: ");
-                    try {
-                        mathOperation(calculateOperation);
-                    } catch (ArithmeticException e) {
-                        System.out.println("Divide by ZERO Exception");
-                    }
+                    System.out.println("U entered wrong value");
                 }
             }
-        } else {
+        } else if (choose == 2) {
             System.out.println("U exit from calculator good bye");
+        } else {
+            System.out.println("U entered wrong value");
         }
     }
 }
